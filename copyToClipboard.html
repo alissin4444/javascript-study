@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	function copiarEtiqueta(nome, fam, id, nasc){
+		let inputEtiqueta = `${nome}<br>${fam}<br>ID: ${id}<br>NASC: ${nasc}`;
+		$("#inputEtiquetaContainer").append(inputEtiqueta);
+
+		let temp = $("<textarea>");
+		let quebraLinha = /<br\s*[\/]?>/gi;
+		$("body").append(temp);
+		temp.val($('#inputEtiquetaContainer').html().replace(quebraLinha, "\r\n")).select();
+		document.execCommand("copy");
+
+		temp.remove();
+		$("#inputEtiquetaContainer").empty()
+	}
+</script>
+</head>
+<body>
+	<p id="inputEtiquetaContainer" style="display: none"></p>
+	<button onclick="copiarEtiqueta('Alisson Gabriel dos Santos', 'Adriana Pereira dos Santos', '21021654', '25/02/2000')">Copiar</button>
+</body>
+</html>
+
